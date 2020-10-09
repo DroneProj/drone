@@ -43,7 +43,6 @@ export class HttpService {
 
      viewbooksbyfield(field)
     {
-      // return this.http.get('localhost:8080/viewbooks/' + field);
       // return this.http.get('http://localhost:8080/viewbook/' + field);
       return this.http.get('https://hidden-savannah-79994.herokuapp.com/viewbook/' + field);
 
@@ -51,13 +50,13 @@ export class HttpService {
 
     viewAllBooks()
     {
-      // return this.http.get('localhost:8080/viewbooks/' + field);
+      // return this.http.get('http://localhost:8080/viewbooks');
       return this.http.get('https://hidden-savannah-79994.herokuapp.com/viewbooks');
     }
 
     viewbookbytitle(title)
     {
-      // return this.http.get('https://hidden-savannah-79994.herokuapp.com/viewbooks/' + field);
+      // return this.http.get('http://localhost:8080/viewbooks/' + title);
       return this.http.get('https://hidden-savannah-79994.herokuapp.com/viewbooktitle/' + title);
     }
 
@@ -83,6 +82,8 @@ export class HttpService {
 
     getEmailAndPassword(email,password)
     {
+      // return this.http.get('http://localhost:8080/getemailpassword/' + email + '/' + password);
+
       return this.http.get('https://hidden-savannah-79994.herokuapp.com/getemailpassword/' + email + '/' + password);
     }
 

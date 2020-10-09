@@ -66,4 +66,9 @@ export class FieldPage implements OnInit {
     this.navCtrl.navigateForward('/cart');
   }
 
+  clearCart()
+  {
+    this.cartservice.getCart().length = 0;
+  }
+
 }

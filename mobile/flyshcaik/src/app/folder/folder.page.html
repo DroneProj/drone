@@ -10,9 +10,11 @@
 <ion-content [fullscreen]="true">
 
 <div>
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-title style="height: 150px; background-size:cover; background-repeat: no-repeat;"> <img src="../../assets/flyschaik.jpeg"> </ion-card-title>
-  </ion-card>
+  </ion-card> -->
+
+  <img src="../../assets/flyschaik.jpeg">
 </div>
   
   <ion-grid>
@@ -29,42 +31,14 @@
 
 
   <ion-slides pager="true">
-
-    <ion-grid>
-      <ion-row>
-
-        <ion-col>
-          <ion-slide>
-            <ion-card (click)="name(1)">
-              <ion-card-title> <img src="../../assets/books.png"> </ion-card-title>
-              <ion-card-subtitle>book name</ion-card-subtitle>
-            </ion-card>
-          </ion-slide>
-        </ion-col>
-
-        <ion-col>
-          <ion-slide>
-            <ion-card (click)="name(2)">
-              <ion-card-title> <img src="../../assets/books.png"> </ion-card-title>
-              <ion-card-subtitle>book name</ion-card-subtitle>
-            </ion-card>
-          </ion-slide>
-        </ion-col>
-
-        <ion-col>
-          <ion-slide>
-            <ion-card (click)="name(3)">
-              <ion-card-title> <img src="../../assets/books.png"> </ion-card-title>
-              <ion-card-subtitle>book name</ion-card-subtitle>
-            </ion-card>
-          </ion-slide>
-        </ion-col>
-        
-
-        
-      </ion-row>
-    </ion-grid>
-
+    <div *ngFor="let b of books">
+      <ion-slide *ngIf="b.count > 5">
+        <ion-card>
+          <ion-card-title> <img src="../../assets/books.png"> </ion-card-title>
+          <ion-card-subtitle>{{b.booktitle}}</ion-card-subtitle>
+        </ion-card>
+      </ion-slide>
+    </div>
   </ion-slides>
 
 

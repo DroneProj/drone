@@ -28,6 +28,16 @@ export class AppComponent implements OnInit {
       icon: 'heart'
     },
     {
+      title: 'View library',
+      url: '',
+      icon: 'book'
+    },
+    {
+      title: 'Track',
+      url: '',
+      icon: 'paper-plane'
+    },
+    {
       title: 'Sign-out',
       url: '/login',
       icon: 'archive'

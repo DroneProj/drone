@@ -75,9 +75,10 @@ export class CartPage implements OnInit {
           // console.log(requestDetails);
         this.presentLoading();
         this.http.postOrder(requestDetails,requestDetails.email,requestDetails.ordernumber,requestDetails.library,requestDetails.item).subscribe((response)=>{
-          this.presentAlert();
         })
       }
+      this.presentAlert();
+      this.cartservice.getCart().length = 0;
     }
 
   }

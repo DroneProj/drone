@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {HttpService} from '../services/http.service';
+import { book } from '../services/cart.service';
 
 @Component({
   selector: 'app-folder',
@@ -14,6 +15,8 @@ export class FolderPage implements OnInit {
 
   books;
 
+
+
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
 
@@ -21,6 +24,7 @@ export class FolderPage implements OnInit {
       this.books = http;
     })
   }
+
 
   name(id)
   {

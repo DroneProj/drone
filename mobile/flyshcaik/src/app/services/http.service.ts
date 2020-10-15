@@ -87,4 +87,25 @@ export class HttpService {
       return this.http.get('https://hidden-savannah-79994.herokuapp.com/getemailpassword/' + email + '/' + password);
     }
 
+
+    viewPastOrder(email)
+    {
+      return this.http.get('https://hidden-savannah-79994.herokuapp.com/viewPastRequests/' + email);
+    }
+
+    viewUserById(id)
+    {
+      return this.http.get('https://hidden-savannah-79994.herokuapp.com/viewuser/' + id);
+    }
+
+    updateUserDetails(id)
+    {
+      return this.http.get('https://hidden-savannah-79994.herokuapp.com/updateUser/' + id);
+    }
+
+    cancelRequest(id)
+    {
+      return this.http.delete('https://hidden-savannah-79994.herokuapp.com/cancelRequest/' + id);
+    }
+
 }

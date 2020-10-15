@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController,AlertController } from '@ionic/angular';
 import {HttpService} from '../../services/http.service';
+import { LoadingController } from '@ionic/angular';
+
 
 
 @Component({
@@ -19,7 +21,7 @@ export class LoginPage implements OnInit {
       user: string;
       users$: Object;
 
-  constructor(public navCtr : NavController,public http:HttpService) { }
+  constructor(public navCtr : NavController,public http:HttpService,public loadingController: LoadingController) { }
 
   ngOnInit() {
   }
@@ -29,7 +31,9 @@ export class LoginPage implements OnInit {
     try
     {
 
+        this.showLoader();
         this.http.getEmailAndPassword(this.email,this.password).subscribe(async (httpCall: any) => {
+          this.hideLoader();
         this.user$ = await httpCall;
 
         if (this.user$.length > 0) 
@@ -54,5 +58,27 @@ export class LoginPage implements OnInit {
 
 
   }
+
+          // Show the loader for infinite time
+          showLoader() {
+
+            this.loadingController.create({
+              message: 'Please wait...'
+            }).then((res) => {
+              res.present();
+            });
+        
+          }
+        
+          // Hide the loader if already created otherwise return error
+          hideLoader() {
+        
+            this.loadingController.dismiss().then((res) => {
+              console.log('Loading dismissed!', res);
+            }).catch((error) => {
+              console.log('error', error);
+            });
+        
+          }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../services/http.service';
+import { LoadingController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-search',
@@ -10,11 +12,14 @@ export class SearchPage implements OnInit {
 
   books:any;
   books$:any;
-  constructor(public http:HttpService) { }
+  constructor(public http:HttpService,public loadingController: LoadingController) { }
 
   ngOnInit() {
+    this.showLoader();
     this.http.viewAllBooks().subscribe(http=>{
+      this.hideLoader();
       this.books$ = http;
+
     })
   }
 
@@ -32,7 +37,39 @@ export class SearchPage implements OnInit {
 
   refresh()
   {
-    this.ngOnInit();
+    // this.ngOnInit();
   }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ngOnInit();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
+
+        // Show the loader for infinite time
+        showLoader() {
+
+          this.loadingController.create({
+            message: 'Please wait...'
+          }).then((res) => {
+            res.present();
+          });
+      
+        }
+      
+        // Hide the loader if already created otherwise return error
+        hideLoader() {
+      
+          this.loadingController.dismiss().then((res) => {
+            console.log('Loading dismissed!', res);
+          }).catch((error) => {
+            console.log('error', error);
+          });
+      
+        }
 
 }

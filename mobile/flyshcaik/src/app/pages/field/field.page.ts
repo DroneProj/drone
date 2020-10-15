@@ -4,6 +4,7 @@ import {HttpService} from '../../services/http.service';
 import * as _ from 'lodash' ;
 import { NavController } from '@ionic/angular';
 import {CartService} from '../../services/cart.service';
+import { LoadingController } from '@ionic/angular';
 
 
 
@@ -25,7 +26,7 @@ export class FieldPage implements OnInit {
   cart = [];
   items = [];
 
-  constructor(public route: ActivatedRoute,public http:HttpService,public navCtrl:NavController,public cartservice:CartService) 
+  constructor(public loadingController: LoadingController,public route: ActivatedRoute,public http:HttpService,public navCtrl:NavController,public cartservice:CartService) 
   {
     this.field = this.route.snapshot.paramMap.get('field');
   }
@@ -33,7 +34,10 @@ export class FieldPage implements OnInit {
   ngOnInit() {
     this.cart = this.cartservice.getCart();
     this.items = this.cartservice.getProducts();
+
+    this.showLoader();
     this.http.viewbooksbyfield(this.field).subscribe(http=>{
+      this.hideLoader();
       this.books$ = http;
     })
 
@@ -70,5 +74,27 @@ export class FieldPage implements OnInit {
   {
     this.cartservice.getCart().length = 0;
   }
+
+          // Show the loader for infinite time
+          showLoader() {
+
+            this.loadingController.create({
+              message: 'Please wait...'
+            }).then((res) => {
+              res.present();
+            });
+        
+          }
+        
+          // Hide the loader if already created otherwise return error
+          hideLoader() {
+        
+            this.loadingController.dismiss().then((res) => {
+              console.log('Loading dismissed!', res);
+            }).catch((error) => {
+              console.log('error', error);
+            });
+        
+          }
 
 }

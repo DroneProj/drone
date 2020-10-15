@@ -11,6 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 
+// map imports
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +30,9 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     HttpClient,
+    LaunchNavigator,
+    NativeGeocoder,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

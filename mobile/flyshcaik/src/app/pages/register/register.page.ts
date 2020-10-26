@@ -44,7 +44,7 @@ export class RegisterPage implements OnInit {
         });
 
         // saves user data on the local storage
-        localStorage.setItem('userData', JSON.stringify(this.user$));
+        localStorage.setItem('userData', JSON.stringify(this.user$[0]));
       }
 
       async presentAlertConfirm() {

@@ -1,5 +1,7 @@
 {
   "name": "flyshcaik",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
